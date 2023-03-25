@@ -10,20 +10,17 @@
     テスト投稿
 
     <script>
-        alert("14:39");
+        alert("14:57");
 
         const { Client } = require('@notionhq/client');
 
-        const notion = new Client({ auth: secret_r4N0Pq1E7Ufyd1h8FYnfmIgOd52nyRzv9d2Mpzde79g });
+        const notion = new Client({ auth: process.env.NOTION_API_KEY });
 
         (async () => {
-        const databaseId = '813a89bf93a6492ab373b95f4dc5726a';
-        const response = await notion.databases.query({
-            database_id: databaseId,
-        });
+        const databaseId = '668d797c-76fa-4934-9b05-ad288df2d136';
+        const response = await notion.databases.retrieve({ database_id: databaseId });
         console.log(response);
         })();
-
     </script>
 
 
