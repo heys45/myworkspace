@@ -8,19 +8,70 @@
 </head>
 <body>
     テスト投稿
+    <button id="ajaxButton" type="button">Cloud FunctionsのAPIを実行</button>
+
 
     <script>
-        alert("14:57");
+        alert("12:30");
 
-        const { Client } = require('@notionhq/client');
+        const Http = new XMLHttpRequest();
+        const url='https://jsonplaceholder.typicode.com/posts';
+        Http.open("GET", url);
+        Http.send();
 
-        const notion = new Client({ auth: process.env.NOTION_API_KEY });
+        Http.onreadystatechange = (e) => {
+        console.log(Http.responseText)
+        }
 
-        (async () => {
-        const databaseId = '668d797c-76fa-4934-9b05-ad288df2d136';
-        const response = await notion.databases.retrieve({ database_id: databaseId });
-        console.log(response);
-        })();
+
+
+
+
+
+        // (function () {
+        //     var httpRequest;
+        //     document.getElementById("ajaxButton").addEventListener('click', makeRequest);
+
+        //     function makeRequest() {
+        //         httpRequest = new XMLHttpRequest();
+
+        //         if (!httpRequest) {
+        //             alert('中断 :( XMLHTTP インスタンスを生成できませんでした');
+        //             return false;
+        //         }
+        //         httpRequest.onreadystatechange = alertContents;
+        //         httpRequest.open('GET', 'https://us-central1-functions-api-a8011.cloudfunctions.net/helloWorld');
+        //         httpRequest.send();
+        //     }
+
+        //     function alertContents() {
+        //         if (httpRequest.readyState === XMLHttpRequest.DONE) {
+        //             if (httpRequest.status === 200) {
+        //                 alert(httpRequest.responseText);
+        //             } else {
+        //                 alert('リクエストに問題が発生しました');
+        //             }
+        //         }
+        //     }
+        // })();
+
+
+
+
+
+
+        // const { Client } = require('@notionhq/client');
+
+        // const notion = new Client({ auth: secret_r4N0Pq1E7Ufyd1h8FYnfmIgOd52nyRzv9d2Mpzde79g });
+
+        // (async () => {
+        // const databaseId = '813a89bf93a6492ab373b95f4dc5726a';
+        // const response = await notion.databases.query({
+        //     database_id: databaseId,
+        // });
+        // console.log(response);
+        // })();
+
     </script>
 
 
